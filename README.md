@@ -38,4 +38,4 @@ This project is a trading signals API, users add cryptocurrencies to their watch
 
 ### Auto-Generated API Documentation
 
-refer to `localhost:8001/docs` or `localhost:8001/redocs`
+navigate to `localhost:8001/docs` or `localhost:8001/redocs`
