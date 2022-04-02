@@ -4,32 +4,38 @@ This project is a trading signals API, users add cryptocurrencies to their watch
 ## Getting Started
 
 
-#### Prerequisites
+### Prerequisites
   - [Python](https://www.python.org/downloads/) is installed 
 
 
-#### Run the project
-1.create python virtualenv
+### Run the project
+##### 1. Create python virtualenv
 
         python3 -m venv venv
 
-2.active python virtualenv
+##### 2. Active python virtualenv
 
-3.install packages
+##### 3. Install packages
 
     pip install -r requirements.txt
-4. set .env variables
+##### 4. Set .env variables
 
-5 .run project
+##### 5. Run Database Migrations (Alembic)
+
+###### Run all migrations to current/highest state
+
+    alembic upgrade head
+
+###### Downgrade to the initial state (blank DB)
+    
+    alembic downgrade base
+
+##### 6. Run project
 
         uvicorn main:app --reload
-#### Running Database Migrations (Alembic)
-##### Downgrade to the initial state (blank DB)
-Run `alembic downgrade base`
 
-##### Run all migrations to current/highest state
-Run `alembic upgrade head`
 
-#### Auto-Generated API Documentation
+
+### Auto-Generated API Documentation
 
 refer to `localhost:8001/docs` or `localhost:8001/redocs`
