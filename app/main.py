@@ -1,28 +1,18 @@
-from fastapi import FastAPI, BackgroundTasks
+from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
-from . import models
-from .database import engine
 from .routers import user, auth, available_data, watchlist
-#from .background_tasks.update import BackgroundRunner,fff
-import asyncio,threading
-from datetime import datetime as dt
-
 from sqlalchemy.orm import Session
 from sqlalchemy import select
 from datetime import datetime as dt
 from . import models
 from . database import engine
-from .background_tasks.calculate import calculate_signals
+from app.calculate_signals import calculate_signals
 import asyncio
 
 
 app = FastAPI()
-#models.Base.metadata.create_all(bind=engine)
-
-
 
 origins = ["*"]
-
 app.add_middleware(
     CORSMiddleware,
     allow_origins=origins,
@@ -31,7 +21,6 @@ app.add_middleware(
     allow_headers=["*"],
 )
 
-# http://127.0.0.1:8000/docs
 class BackgroundRunner:
     def __init__(self):
         self.updated = False

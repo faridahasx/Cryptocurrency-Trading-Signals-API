@@ -4,7 +4,7 @@ from typing import List
 from .. import models, schemas, oauth2
 from ..database import get_db
 import ccxt
-from ..background_tasks.calculate import calculate_signals
+from app.calculate_signals import calculate_signals
 
 router = APIRouter(
     prefix="/watchlist",
