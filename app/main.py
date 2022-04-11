@@ -34,7 +34,6 @@ class BackgroundRunner:
                     signal_query = session.query(models.Crypto).all()
 
                     for s in signal_query:
-                        print(s.id)
                         #  Check if the crypto does not appear in anyone's watchlist, remove it from the database
                         on_watchlist = session.query(models.Watchlist).filter(models.Watchlist.crypto_id == s.id).first
                         crypto = session.execute(select(models.Crypto).filter_by(id=s.id)).scalar_one()
