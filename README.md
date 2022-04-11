@@ -28,7 +28,7 @@ This project is a trading signals API, users add cryptocurrencies to their watch
 
     alembic upgrade head
 
-###### Downgrade to the initial state (blank DB)
+###### Downgrade to the initial state
     
     alembic downgrade base
 
