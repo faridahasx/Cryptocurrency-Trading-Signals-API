@@ -2,10 +2,10 @@
 This project is an API for cryptocurrency trends. 
 Users can create profiles and add cryptocurrencies to their watchlist to follow trends.
 
-####Bullish Trend
+#### Bullish Trend
 - Price is above ichimoku conversion line
 
-####Bearish Trend
+#### Bearish Trend
 - Price is below ichimoku conversion line
 
 or 
