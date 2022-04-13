@@ -1,6 +1,5 @@
 # FastAPI - Cryptocurrency Trends API
-This project is an API to follow cryptocurrency trends. 
-Users can create profiles and add cryptocurrencies to their watchlist to get the trend signals.
+In this API, users can create profiles and add cryptocurrencies to their watchlist to get the trend signals.
 
 #### Bullish
 - Price is above ichimoku conversion line
