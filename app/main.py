@@ -7,7 +7,7 @@ from sqlalchemy import select
 from datetime import datetime as dt
 from . import models
 from . database import engine
-from app.calculate_signals import calculate_signals,BackgroundRunner
+from app.calculate_signals import calculate_signals, BackgroundRunner
 import asyncio
 
 
@@ -22,14 +22,12 @@ app.add_middleware(
     allow_headers=["*"],
 )
 
-
 runner = BackgroundRunner()
 
 @app.on_event('startup')
 @repeat_every(seconds=60*60*24) 
 async def app_startup():
     asyncio.create_task(runner.update_signals())
-
 
 app.include_router(user.router)
 app.include_router(auth.router)
