@@ -1,5 +1,18 @@
-# FastAPI - Cryptocurrency Trading Signals
-This project is a trading signals API, users add cryptocurrencies to their watchlist and get trading signals.
+# FastAPI - Cryptocurrency Trends API
+This project is an API for cryptocurrency trends. 
+Users can create profiles and add cryptocurrencies to their watchlist to follow trends.
+
+####Bullish Trend
+- Price is above ichimoku conversion line
+
+####Bearish Trend
+- Price is below ichimoku conversion line
+
+or 
+
+- If daily candle is closed with more than 5% loss, the trend will remain bearish until price crosses from below to above ichimoku conversion line.
+
+***
 
 ## Getting Started
 

@@ -25,8 +25,8 @@ def calculate_signals(pair, exchange):
     df = pd.DataFrame(data, columns=header)
 
     ichimoku = IchimokuIndicator(high=df['High'], low=df['Low'], window1=9, window2=26, window3=52)
-    ichimoku_base = ichimoku.ichimoku_base_line()
-    df['trend'] = ichimoku_base
+    ichimoku_conversion = ichimoku.ichimoku_conversion_line()
+    df['trend'] = ichimoku_conversion
 
     # Calculate
     close = float(df['Close'][len(df.index) - 2])
