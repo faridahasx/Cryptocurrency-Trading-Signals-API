@@ -4,6 +4,7 @@ In this API, users can create profiles and add cryptocurrencies to their watchli
 #### Bullish
 - Price is above ichimoku conversion line
 
+
 #### Bearish
 - Price is below ichimoku conversion line
 
