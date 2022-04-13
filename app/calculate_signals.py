@@ -21,7 +21,6 @@ def calculate_signals(pair, exchange):
         raise HTTPException(status_code=status.HTTP_403_FORBIDDEN,
                             detail=f"{e}")
 
-    # To DataFrame
     header = ['Timestamp', 'Open', 'High', 'Low', 'Close', 'Volume']
     df = pd.DataFrame(data, columns=header)
 
@@ -55,3 +54,26 @@ def calculate_signals(pair, exchange):
     return signal_stage
 
 
+class BackgroundRunner:
+    async def update_signals(self):
+        await asyncio.sleep(0.1)
+        if dt.now().hour == 22:
+            session = Session(engine)
+            signal_query = session.query(models.Crypto).all()
+
+            for s in signal_query:
+                #  Check if the crypto does not appear in anyone's watchlist, remove it from the database
+                on_watchlist = session.query(models.Watchlist).filter(models.Watchlist.crypto_id == s.id).first
+                crypto = session.execute(select(models.Crypto).filter_by(id=s.id)).scalar_one()
+
+                if on_watchlist:
+                    pair = s.name
+                    exchange = s.exchange
+                    signal_stage = calculate_signals(pair, exchange)
+                    crypto.signal_stage = signal_stage
+                    session.commit()
+                else:
+                    crypto.delete(synchronize_session=False)
+                    session.commit()
+
+            session.close()
