@@ -10,29 +10,24 @@ def calculate_signals(pair, exchange):
     try:
         exchange = getattr(ccxt, exchange)()
         exchange.load_markets()
-
         days = timedelta(days=60)
         ending_date = dt.now()
         since = ending_date - days
         since = exchange.parse8601(since)
-
         data = exchange.fetch_ohlcv(pair, '1d', since=since, limit=60)
     except Exception as e:
-        raise HTTPException(status_code=status.HTTP_403_FORBIDDEN,
-                            detail=f"{e}")
+        raise HTTPException(status_code=status.HTTP_403_FORBIDDEN, detail=f"{e}")
 
     header = ['Timestamp', 'Open', 'High', 'Low', 'Close', 'Volume']
     df = pd.DataFrame(data, columns=header)
-
     ichimoku = IchimokuIndicator(high=df['High'], low=df['Low'], window1=9, window2=26, window3=52)
     ichimoku_conversion = ichimoku.ichimoku_conversion_line()
     df['trend'] = ichimoku_conversion
 
-    # Calculate
+    # Calculate signals
     close = float(df['Close'][len(df.index) - 2])
     open = float(df['Open'][len(df.index) - 2])
     trend = float(df['trend'][len(df.index) - 2])
-
     signal_stage = 0
 
     if close <= open * 0.95:
