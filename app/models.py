@@ -12,6 +12,7 @@ class User(Base):
     password = Column(String, nullable=False)
     created_at = Column(TIMESTAMP(timezone=True), nullable=False, server_default=text('now()'))
 
+    
 class Crypto(Base):
     __tablename__ = "cryptocurrency"
     name = Column(String, nullable=False)
@@ -23,9 +24,7 @@ class Crypto(Base):
 class Watchlist(Base):
     __tablename__ = "watchlist"
     id = Column(Integer, primary_key=True, index=True)
-
     user_id = Column(Integer, ForeignKey(
         "users.id", ondelete="CASCADE",onupdate="CASCADE"), primary_key=True)
     crypto_id = Column(String, ForeignKey(
         "cryptocurrency.id", ondelete="CASCADE",onupdate="CASCADE"), primary_key=True)
-
