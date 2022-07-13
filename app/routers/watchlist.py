@@ -18,7 +18,6 @@ def add(pair, exchange, user_id, crypto_id, condition):
         new_pair = models.Crypto(name=pair, exchange=exchange,
                                  signal_stage=calculate_signals(pair, exchange),
                                  id=crypto_id)
-        print(new_pair.dict())
         Session.add(new_pair)
         Session.commit()
         Session.refresh(new_pair)
