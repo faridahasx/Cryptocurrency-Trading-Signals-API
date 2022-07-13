@@ -70,7 +70,6 @@ def add_crypto_to_watchlist(background_task: BackgroundTasks, crypto: schemas.Cr
 
 
     else:
-        print(999)
         background_task.add_task(add, pair_symbol, exchange, current_user.id, crypto_id, 'only watchlist')
 
     return {f'Adding {pair_symbol} to watchlist'}
