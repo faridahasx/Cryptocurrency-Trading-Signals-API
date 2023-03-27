@@ -24,7 +24,7 @@ app.add_middleware(
 
 runner = BackgroundRunner()
 
-# Run a background function in every 24 hours to update cryptocurrency signals
+# Run a background task in every 24 hours to update cryptocurrency signals
 @app.on_event('startup')
 @repeat_every(seconds=60*60*24) 
 async def app_startup():
