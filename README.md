@@ -1,6 +1,3 @@
-# FastAPI - Cryptocurrency Trends API
-In this API, users can create profiles and add cryptocurrencies to their watchlist to follow the trends.
-
 #### Bullish
 - Price is above ichimoku conversion line
 
